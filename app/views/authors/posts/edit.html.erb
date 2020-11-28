@@ -11,16 +11,12 @@
         <div class="card-footer">
           <% if @post.published? %>
             <a href="#" 
-              class="btn btn-secondary btn-block" 
-              data-reflex='click->PublisherReflex#unpublish' 
-              data-post-id='<%= @post.id %>'>
+              class="btn btn-secondary btn-block" >
               Borrador
             </a>
           <% else %>
             <a href="#" 
-              class="btn btn-dark btn-block" 
-              data-reflex='click->PublisherReflex#publish' 
-              data-post-id='<%= @post.id %>'>
+              class="btn btn-dark btn-block" >
               Publicar
             </a>
           <% end %>
