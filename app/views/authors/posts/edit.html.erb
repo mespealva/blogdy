@@ -10,7 +10,7 @@
         </div>
         <div class="card-footer">
           <% if @post.published? %>
-            <%=link_to "borrador", unpublish_path(@post), method: :patch%>
+            <%=link_to "volver a borrador", unpublish_path(@post), method: :patch%>
           <% else %>
             <%=link_to "publicar", publish_path(@post), method: :patch%>
           <% end %>
@@ -47,7 +47,7 @@
               <h2 class="text-secondary">
                 <i class="fas fa-lightbulb"></i>
               </h2>
-              <p>Presiona arriba para crear una imageno parrafo</p>
+              <p>Presiona arriba para crear una imagen o parrafo</p>
             </div>
           <% else %>
             <ul id="elements" data-controller="drag">
@@ -60,7 +60,7 @@
                           <% if element.content.present? %>
                             <%= element.content %>
                           <% else %>
-                            Contenido
+                             Doble click para cambiar Contenido
                           <% end %>
                         </div>
                         <div class="paragraph-form d-none" id='element-<%= element.id %>-form'>
