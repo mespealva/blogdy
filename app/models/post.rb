@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   belongs_to :author
-  has_many :elements
+  has_many :elements, -> { order(position: :asc) }
 
   has_one_attached :header_image
 

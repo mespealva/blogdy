@@ -38,3 +38,4 @@ document.addEventListener('turbolinks:load', () => {
         element.previousElementSibling.classList.remove('d-none')
   })
 })
+import "controllers"

@@ -16,4 +16,6 @@ class Element < ApplicationRecord
   def tag?
     element_type == 'tag'
   end
+
+  acts_as_list scope: :post
 end
