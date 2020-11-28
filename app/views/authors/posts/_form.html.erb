@@ -15,6 +15,17 @@
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
+  
+  <div class="form-group">
+    <%= form.label :header_image %>
+    <%= form.file_field :header_image %>
+    <div class="mt-1">
+      <% if post.header_image.present? %>
+        <small>Current image:</small>
+        <%= image_tag(post.header_image, width: '100%') %>
+      <% end %>
+    </div>
+  </div>
 
 
   <div class="actions">

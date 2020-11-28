@@ -73,7 +73,7 @@
                             Contenido
                           <% end %>
                         </div>
-                        <div class="paragraph-form" id='element-<%= element.id %>-form'>
+                        <div class="paragraph-form d-none" id='element-<%= element.id %>-form'>
                           <%= form_with(model: [@post, element]) do |form| %>
                             <%= form.rich_text_area :content %>
                             <div class="mt-3 d-flex justify-content-between">
@@ -89,7 +89,7 @@
                       <div class="mb-4 p-3 image">
                         <% if element.image.present? %>
                           <%= link_to post_element_path(@post, element), method: :delete, class: 'delete-btn btn btn-dark mt-2 float-right', data: { confirm: "Are you sure?" } do %>
-                            <i class="fas fa-times"></i>
+                            X
                           <% end %>
                           <%= image_tag(element.image) %>
                         <% else %>
