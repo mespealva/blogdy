@@ -1,6 +1,6 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post, only: [:edit, :update, :destroy]
+    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish]
   
     # GET /posts
     def index
@@ -42,7 +42,17 @@ module Authors
       @post.destroy
       redirect_to posts_url, notice: 'Post was successfully destroyed.'
     end
-  
+    
+    def publish
+      @post.update(published: true, published_at: Time.now)
+      redirect_to edit_post_path(@post)
+    end
+
+    def unpublish
+      @post.update(published: false, published_at: nil)
+      redirect_to edit_post_path(@post)
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post

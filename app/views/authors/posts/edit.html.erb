@@ -10,15 +10,9 @@
         </div>
         <div class="card-footer">
           <% if @post.published? %>
-            <a href="#" 
-              class="btn btn-secondary btn-block" >
-              Borrador
-            </a>
+            <%=link_to "borrador", unpublish_path(@post), method: :patch%>
           <% else %>
-            <a href="#" 
-              class="btn btn-dark btn-block" >
-              Publicar
-            </a>
+            <%=link_to "publicar", publish_path(@post), method: :patch%>
           <% end %>
         </div>
       </div>
