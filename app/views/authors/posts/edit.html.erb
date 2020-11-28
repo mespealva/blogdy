@@ -70,7 +70,7 @@
                               <div>
                                 <%= form.submit "Guardar", class: 'btn btn-primary' %>
                               </div>
-                              <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" } %>
+                              <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }, remote: true %>
                             </div>
                           <% end %>
                         </div>

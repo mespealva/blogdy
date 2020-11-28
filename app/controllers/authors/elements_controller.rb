@@ -6,6 +6,7 @@ module Authors
     # POST /elements
     def create
       @element = @post.elements.build(element_params)
+      @element.position= @element.id
   
       if @element.save
         @notice = nil
@@ -24,7 +25,7 @@ module Authors
     # DELETE /elements/1
     def destroy
       @element.destroy
-      redirect_to edit_post_path(@element.post)
+      #redirect_to edit_post_path(@element.post)
     end
   
     private
