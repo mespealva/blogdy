@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     patch 'publish/:id', to: 'posts#publish', as: 'publish'
     patch 'unpublish/:id', to: 'posts#unpublish', as: 'unpublish'
     resources :posts do
-      resources :elements
+      resources :elements do
+        member do
+          patch :move
+        end
+      end
     end
   end
   

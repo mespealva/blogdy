@@ -1,12 +1,11 @@
 module Authors
   class ElementsController < AuthorsController
     before_action :set_post
-    before_action :set_element, only: [:update, :destroy]
+    before_action :set_element, only: [:update, :destroy, :move]
   
     # POST /elements
     def create
       @element = @post.elements.build(element_params)
-      @element.position= @element.id
   
       if @element.save
         @notice = nil
@@ -26,6 +25,10 @@ module Authors
     def destroy
       @element.destroy
       #redirect_to edit_post_path(@element.post)
+    end
+
+    def move
+      @element.insert_at(params[:position].to_i)
     end
   
     private
