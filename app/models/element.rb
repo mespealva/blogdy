@@ -17,5 +17,9 @@ class Element < ApplicationRecord
     element_type == 'tag'
   end
 
+  scope :first_element , -> do 
+    Element.where(element_type: 'paragraph').first 
+  end
+
   acts_as_list scope: :post
 end

@@ -2,10 +2,11 @@
     <% @posts.each do |post| %>
       <div class="col-md-6 col-lg-4">
         <div class="card post-card">
-          <%= image_tag(post.header_image) %>
+          <%= image_tag(post.header_image) unless post.header_image.nil?%>
           <div class="card-body d-flex flex-column">
             <h5 class="card-title"><%= post.title %></h5>
-            <%#= link_to 'Read Post', blog_post_path(post), class: 'btn btn-primary mt-auto' %>
+            <p><%=truncate(strip_tags(post.elements.first_element.content.to_s), lenght: 250)%></p>
+            <%= link_to 'Leer Post', blog_post_path(post), class: 'btn btn-light mt-auto' %>
           </div>
         </div>
       </div>

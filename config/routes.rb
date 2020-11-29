@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  get "blog/:id", to: 'readers/posts#show', as:'blog_post'
   devise_for :authors
   scope module: 'authors' do
     patch 'publish/:id', to: 'posts#publish', as: 'publish'
