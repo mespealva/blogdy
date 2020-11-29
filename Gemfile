@@ -26,7 +26,7 @@ gem 'turbolinks', '~> 5'
 gem 'image_processing', '~> 1.2'
 gem 'acts_as_list'
 gem 'devise'
-
+gem 'friendly_id', '~> 5.4.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
