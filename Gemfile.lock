@@ -96,6 +96,8 @@ GEM
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    impressionist (2.0.0)
+      nokogiri (~> 1)
     listen (3.3.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -232,6 +234,7 @@ DEPENDENCIES
   devise
   friendly_id (~> 5.4.0)
   image_processing (~> 1.2)
+  impressionist
   listen (~> 3.2)
   optimism (~> 0.3.5)
   pg (>= 0.18, < 2.0)

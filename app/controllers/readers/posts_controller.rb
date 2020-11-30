@@ -1,10 +1,10 @@
 module Readers
     class PostsController < ReadersController
-      #impressionist
+      impressionist
   
       def show
         @post = Post.published.friendly.find(params[:id])
-        #impressionist(@post)
+        impressionist(@post)
       end
       
     end
