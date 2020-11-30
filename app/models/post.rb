@@ -11,6 +11,7 @@ class Post < ApplicationRecord
 
   validates :title, uniqueness: true
   validates_presence_of :title
+  validates_presence_of :header_image
 
   scope :published, -> do
     where(published: true)
