@@ -3,7 +3,7 @@
       <%= link_to 'Back', posts_path, class: 'btn btn-dark mb-3' %>
       <div class="card">
         <div class="card-header">
-          <h6 class="card-title mb-0">Editing Post</h6>
+          <h6 class="card-title mb-0">Editando blog</h6>
         </div>
         <div class="card-body">
           <%= render 'form', post: @post %>
@@ -47,7 +47,7 @@
               <h2 class="text-secondary">
                 <i class="fas fa-lightbulb"></i>
               </h2>
-              <p>Presiona arriba para crear una imagen o parrafo</p>
+              <p>Presiona arriba para crear una imagen o parrafo y luego arrastralas para dejarlas en el lugar correcto</p>
             </div>
           <% else %>
             <ul id="elements" data-controller="drag">
@@ -70,7 +70,7 @@
                               <div>
                                 <%= form.submit "Guardar", class: 'btn btn-primary' %>
                               </div>
-                              <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?" }, remote: true %>
+                              <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
                             </div>
                           <% end %>
                         </div>
@@ -78,7 +78,7 @@
                     <% elsif element.image? %>
                       <div class="mb-4 p-3 image">
                         <% if element.image.present? %>
-                          <%= link_to post_element_path(@post, element), method: :delete, class: 'delete-btn btn btn-dark mt-2 float-right', data: { confirm: "Are you sure?" } do %>
+                          <%= link_to post_element_path(@post, element), method: :delete, class: 'delete-btn btn btn-dark mt-2 float-right', data: { confirm: "Estas segura?" } do %>
                             X
                           <% end %>
                           <%= image_tag(element.image) %>
