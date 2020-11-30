@@ -1,3 +1,27 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.readers.home.index {
+  .post-card {
+    height: 550px; 
+    .header-image {
+      .img{
+          height: 230px;
+      }
+    }
+  }
+}
+
+.readers.posts.show {
+  .post-card {
+    .header-image {
+      height: 250px;
+    }
+    .image-element {
+      text-align: center;
+      img {
+        max-width: 80%;
+      }
+    }
+  }
+}
