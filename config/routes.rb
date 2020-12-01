@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     get 'unposted', to: 'posts#unposted', as: "unposted"
     patch 'publish/:id', to: 'posts#publish', as: 'publish'
     patch 'unpublish/:id', to: 'posts#unpublish', as: 'unpublish'
+    patch 'finish/:id', to: 'posts#finish', as: 'finish'
     resources :posts do
       resources :elements do
         member do

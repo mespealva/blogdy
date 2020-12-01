@@ -1,10 +1,11 @@
 module Authors
   class PostsController < AuthorsController
     before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish]
+    before_action :is_admin?, only: [:publish, :unpublish]
   
     # GET /posts
     def index
-      if current_author.id == 1
+      if current_author.is_admin?
         @posts = Post.all
       else
         @posts = current_author.posts
@@ -16,9 +17,14 @@ module Authors
     end
     
     def unposted
-      @post = current_author.posts.where(published: false)
+      @posts = current_author.posts.where(published: false)
     end 
   
+    def finished
+      @posts = Post.where(finished: true)
+    end
+
+
     # GET /posts/new
     def new
       @post = current_author.posts.build
@@ -62,6 +68,11 @@ module Authors
 
     def unpublish
       @post.update(published: false, published_at: nil)
+      redirect_to edit_post_path(@post)
+    end
+
+    def finish
+      @post.update(finished: true)
       redirect_to edit_post_path(@post)
     end
 

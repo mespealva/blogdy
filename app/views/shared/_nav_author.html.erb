@@ -5,10 +5,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <%= link_to "all post", posts_path, class: "nav-link" %>
-        <%= link_to "Posteados", posted_path, class: "nav-link" %>
-        <%= link_to "Borradores", unposted_path, class: "nav-link" %>
-        <%= link_to 'stats', stats_path, class: "nav-link" %>
+        <%= link_to "Todos los posts", posts_path, class: "nav-link" %>
+        <%= link_to "Tus Posteados", posted_path, class: "nav-link" %>
+        <%= link_to "Tus Borradores", unposted_path, class: "nav-link" %>
+        <%= link_to 'Estadisticas', stats_path, class: "nav-link" %>
+        <%= (link_to 'terminados', finished_path, class: "nav-link") if current_user.is_admin? %>
         <%= link_to 'cerrar sesion', destroy_author_session_path, class: "nav-link text-right" %>
       </div>
     </div>
