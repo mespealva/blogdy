@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   scope module: 'authors' do
     get 'stats', to: "stats#index"
+    get 'posted', to: "posts#posted", as:"posted"
+    get 'unposted', to: 'posts#unposted', as: "unposted"
     patch 'publish/:id', to: 'posts#publish', as: 'publish'
     patch 'unpublish/:id', to: 'posts#unpublish', as: 'unpublish'
     resources :posts do

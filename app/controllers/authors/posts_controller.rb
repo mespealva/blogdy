@@ -4,8 +4,20 @@ module Authors
   
     # GET /posts
     def index
-      @posts = current_author.posts
+      if current_author.id == 1
+        @posts = Post.all
+      else
+        @posts = current_author.posts
+      end 
     end
+    
+    def posted
+      @posts = current_author.posts.where(published: true)
+    end
+    
+    def unposted
+      @post = current_author.posts.where(published: false)
+    end 
   
     # GET /posts/new
     def new
