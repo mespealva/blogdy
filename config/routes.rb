@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
   get "blog/:id", to: 'readers/posts#show', as:'blog_post'
-  devise_for :authors
+  devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks' }
+  #devise_scope :author do
+  #  get 'authors/sign_in', to: 'authors/sessions#new', as: :new_author_session
+  #  get 'authors/sign_out', to: 'authors/sessions#destroy', as: :destroy_author_session
+  #end
   
   
   scope module: 'authors' do
