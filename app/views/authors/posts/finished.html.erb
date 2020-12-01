@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<h4 class='d-flex justify-content-between mb-4'>
+  <span>todos los posts</span>
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+</h4>
+
+<%= render @posts %>

@@ -1,7 +1,7 @@
 module Authors
   class PostsController < AuthorsController
     before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish]
-    before_action :is_admin?, only: [:publish, :unpublish]
+    
   
     # GET /posts
     def index
@@ -62,13 +62,17 @@ module Authors
     end
     
     def publish
-      @post.update(published: true, published_at: Time.now)
-      redirect_to edit_post_path(@post)
+      if current_author.is_admin?
+        @post.update(published: true, published_at: Time.now)
+        redirect_to edit_post_path(@post)
+      end
     end
 
     def unpublish
-      @post.update(published: false, published_at: nil)
-      redirect_to edit_post_path(@post)
+      if current_author.is_admin?
+        @post.update(published: false, published_at: nil)
+        redirect_to edit_post_path(@post)
+      end
     end
 
     def finish

@@ -20,6 +20,7 @@ class Post < ApplicationRecord
   scope :most_recently_published, -> do
     order(published_at: :desc)
   end
+
   def should_generate_new_friendly_id?
     title_changed?
   end
