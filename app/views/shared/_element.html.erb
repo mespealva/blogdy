@@ -1,0 +1,73 @@
+<div class="card-body pt-5" data-controller="trix">
+    <% if @post.elements.none? { |element| element.persisted? }%>
+      <div class="p-4 text-center">
+        <h2 class="text-secondary">
+          <i class="fas fa-lightbulb"></i>
+        </h2>
+        <p>Presiona arriba para crear una imagen o parrafo y luego arrastralas para dejarlas en el lugar correcto</p>
+      </div>
+    <% else %>
+      <ul id="elements" data-controller="drag">
+          <%@elements.each do |element|%>
+            <% if element.persisted? %>
+            <li  data-id="<%= element.id %>" class="element-item" id="element<%=element.id%>">
+            <% if element.paragraph? %>
+            <div class="mb-4 p-3 paragraph">
+                <div class="paragraph-content">
+                    <% if element.content.present? %>
+                        <%= element.content %>
+                    <% else %>
+                        Doble Click para Cambiar Contenido
+                    <% end %>
+                </div>
+                <div class="paragraph-form d-none" id='element-<%= element.id %>-form'>
+                    <%= form_with(model: [@post, element]) do |form| %>
+                        <%= form.rich_text_area :content %>
+                        <div class="mt-3 d-flex justify-content-between">
+                            <div>
+                                <%= form.submit "Guardar", class: 'btn btn-primary' %>
+                            </div>
+                            <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <% elsif element.image? %>
+            <div class="mb-4 p-3 image">
+                <% if element.image.present? %>
+                    <%= link_to post_element_path(@post, element), method: :delete, class: 'delete-btn btn btn-dark mt-2 float-right', data: { confirm: "Estas segura?" } do %>
+                        X
+                    <% end %>
+                    <%= image_tag(element.image) %>
+                <% else %>
+                    <%= form_with(model: [@post, element]) do |form| %>
+                        <%= form.file_field :image %>
+                        <div class="mt-3">
+                            <%= form.submit "Guardar", class: 'btn btn-primary' %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
+    </li>
+    <% end %>
+<%end%>     
+    </ul>
+<% end %>
+<div class="container">
+    <div class="mb-3">
+        <%= form_with(model: [@post, @element], html: { class: 'float-left mr-1' }) do |form| %>
+          <%= form.hidden_field :element_type, value: 'paragraph' %>
+          <%= button_tag(type: 'submit', class: 'btn btn-secondary', remote: true) do %>
+            parrafo
+          <% end %>
+        <% end %>
+        <%= form_with(model: [@post, @element]) do |form| %>
+          <%= form.hidden_field :element_type, value: 'image' %>
+          <%= button_tag(type: 'submit', class: 'btn btn-secondary', remote: true) do %>
+            imagen
+          <% end %>
+        <% end %>
+      </div>
+</div>
+

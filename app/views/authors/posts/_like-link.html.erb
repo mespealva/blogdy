@@ -1,0 +1,3 @@
+<% vote_text = current_author.voted_for?(post) ? "unlike": "like"%>
+
+<%= link_to vote_text, like_post_path(post), method: :put, remote: :true %>

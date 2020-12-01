@@ -5,6 +5,7 @@ module Authors
   
     # POST /elements
     def create
+      @elements = @post.elements
       @element = @post.elements.build(element_params)
   
       if @element.save
@@ -12,7 +13,7 @@ module Authors
       else
         notice = @element.errors.full_messages.join(". ") << "."
       end
-      redirect_to edit_post_path(@post), notice: notice
+      #redirect_to edit_post_path(@post), notice: notice
     end
   
     # PATCH/PUT /elements/1

@@ -3,7 +3,7 @@
       <div class="card post-card mb-5 d-block">
         <% unless @post.header_image.nil? %>
             <div class="header-image mb-5">
-              <%= image_tag(@post.header_image, height: '450') %>
+              <%= image_tag(@post.header_image) %>
             </div>
         <%end%>
         <div class="card-body d-block">

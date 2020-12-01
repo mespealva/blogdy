@@ -1,6 +1,6 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :finish]
+    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :finish, :like]
     
   
     # GET /posts
@@ -32,6 +32,7 @@ module Authors
   
     # GET /posts/1/edit
     def edit
+      @elements = @post.elements.order(position: :asc)
       @element = @post.elements.build
     end
   
@@ -80,10 +81,17 @@ module Authors
       redirect_to edit_post_path(@post)
     end
 
+    def like
+      if current_author.voted_for? @post
+        @post.unliked_by current_author
+      else
+        @post.liked_by current_author
+      end
+    end
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = current_author.posts.friendly.find(params[:id])
+        @post = current_author.posts.friendly.find_by(params[:slug])
       end
   
       # Only allow a trusted parameter "white list" through.

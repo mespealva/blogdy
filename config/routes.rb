@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     patch 'unpublish/:id', to: 'posts#unpublish', as: 'unpublish'
     patch 'finish/:id', to: 'posts#finish', as: 'finish'
     resources :posts do
+      member do
+        put 'like', to: 'posts#like', as: "like"
+      end
       resources :elements do
         member do
           patch :move

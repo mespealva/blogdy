@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   friendly_id :title, use: [:slugged, :history, :finders]
 
   is_impressionable
+  acts_as_votable
   
   belongs_to :author
   has_many :elements, -> { order(position: :asc) }
@@ -19,6 +20,12 @@ class Post < ApplicationRecord
 
   scope :most_recently_published, -> do
     order(published_at: :desc)
+  end
+
+  def slug=(title)
+    if title.present?
+      write_attribute(:slug, value)
+    end
   end
 
   def should_generate_new_friendly_id?
