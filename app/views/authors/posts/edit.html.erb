@@ -22,12 +22,12 @@
           <%end%>
         </div>
         <div class="card-footer" 
-          <span id="likes-count"
+          <p class= "d-flex" id="likes-count" >
             <%= render 'like', post: @post %>
-          </span>
-          <span id="like-link">
-            <%= render 'like-link', post: @post %>
-          </span>
+          </p>
+          <p class="d-flex" id="link">
+            <%= render 'link', post: @post %>
+          </p>
         </div>
       </div>
     </div>
