@@ -1,6 +1,6 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish]
+    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :finish]
     
   
     # GET /posts
