@@ -1,6 +1,6 @@
 module Authors
   class PostsController < AuthorsController
-    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :like]
+    before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :like, :finish]
     
   
     # GET /posts
@@ -91,7 +91,7 @@ module Authors
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = current_author.posts.friendly.find_by(params[:slug])
+        @post = current_author.posts.friendly.find(params[:id])
       end
   
       # Only allow a trusted parameter "white list" through.

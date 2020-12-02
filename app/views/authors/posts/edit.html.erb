@@ -19,14 +19,14 @@
       <div class="card-footer">
         <% if current_author.is_admin? %>
           <% if @post.published?%>
-            <%=link_to "Volver a Borrador", unpublish_path(@post), method: :patch%>
+            <%=link_to "Volver a Borrador", unpublish_path(@post), method: :patch %>
           <% else %>
-            <%=link_to "Publicar", publish_path(@post), method: :patch%>
+            <%=link_to "Publicar", publish_path(@post), method: :patch %>
           <% end %>
         <%elsif @post.finished?%>
           Terminado! 
         <%else%>
-          <%=link_to "Terminado", finish_path(@post), method: :patch%>
+          <%=link_to "Terminado", finish_path(@post), method: :patch %>
         <%end%>
       </div>
       <div class="card-footer" 
@@ -56,7 +56,7 @@
         <h2 class="text-secondary">
           <i class="fas fa-lightbulb"></i>
         </h2>
-        <p>Presiona arriba para crear una imagen o parrafo y luego arrastralas para dejarlas en el lugar correcto</p>
+        <p>Presiona abajo para crear una imagen o parrafo y luego arrastralas para dejarlas en el lugar correcto</p>
       </div>
     <% else %>
       <ul id="elements" data-controller="drag">
