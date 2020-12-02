@@ -91,7 +91,11 @@ module Authors
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = current_author.posts.friendly.find(params[:id])
+        if current_author.id ==1
+          @post = Post.friendly.find(params[:id])
+        else
+          @post = current_author.posts.friendly.find(params[:id])
+        end
       end
   
       # Only allow a trusted parameter "white list" through.

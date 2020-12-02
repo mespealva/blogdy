@@ -35,7 +35,11 @@ module Authors
       # Use callbacks to share common setup or constraints between actions.
 
       def set_post
-        @post = Post.friendly.find(params[:post_id])
+        if current_author.id == 1
+          @post = Post.friendly.find(params[:post_id])
+        else
+          @post = current_author.posts.friendly.find(params[:id])
+        end
       end
       
       def set_element
