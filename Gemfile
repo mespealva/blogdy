@@ -30,6 +30,7 @@ gem 'acts_as_votable'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'mailgun_rails'
 
 gem 'friendly_id', '~> 5.4.0'
 gem 'impressionist'

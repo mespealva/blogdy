@@ -79,8 +79,19 @@ module Authors
     def finish
       @post.update(finished: true)
       redirect_to edit_post_path(@post)
+      
+      send_simple_message
+      #email = mail from: '<mar.alvareg@gmail.com>', to: user, subject: 'hay un borrador terminado'
     end
-
+    def send_simple_message
+      user = Author.first.email
+      RestClient.post ENV["APIMAIL"]\
+      ENV["APIENV"],
+      :from => "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+      :to => "mar.alvareg@gmail.com, YOU"ENV["APIENV"],
+      :subject => "Hello",
+      :text => "Testing some Mailgun awesomness!"
+    end
     def like
       if current_author.voted_for? @post
         @post.unliked_by current_author
@@ -91,7 +102,7 @@ module Authors
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        @post = current_author.posts.friendly.find_by(params[:slug])
+        @post = current_author.posts.friendly.find(params[:id])
       end
   
       # Only allow a trusted parameter "white list" through.

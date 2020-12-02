@@ -1,6 +1,7 @@
 <div class="row" id="<%=@post.id%>">
     <div class="col-md-4">
       <%= link_to 'Back', posts_path, class: 'btn btn-dark mb-3' %>
+      <%= link_to 'borrar', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
       <div class="card">
         <div class="card-header">
           <h6 class="card-title mb-0">Editando blog de <%=current_author.full_name%></h6>
