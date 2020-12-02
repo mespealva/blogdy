@@ -5,7 +5,6 @@ module Authors
   
     # POST /elements
     def create
-      @elements = @post.elements
       @element = @post.elements.build(element_params)
   
       if @element.save
@@ -36,7 +35,7 @@ module Authors
       # Use callbacks to share common setup or constraints between actions.
 
       def set_post
-        @post = current_author.posts.find(params[:post_id])
+        @post = Post.friendly.find(params[:post_id])
       end
       
       def set_element
