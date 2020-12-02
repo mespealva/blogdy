@@ -79,6 +79,7 @@ module Authors
     def finish
       @post.update(finished: true)
       redirect_to edit_post_path(@post)
+      AuthorMailer.sample_email(current_author)
     end
 
     def like

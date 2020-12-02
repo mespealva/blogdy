@@ -38,7 +38,7 @@ module Authors
         if current_author.is_admin?
           @post = Post.friendly.find(params[:post_id])
         else
-          @post = current_author.posts.friendly.find(params[:id])
+          @post = current_author.posts.friendly.find(params[:post_id])
         end
       end
       
