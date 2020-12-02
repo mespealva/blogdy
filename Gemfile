@@ -24,7 +24,7 @@ gem 'turbolinks', '~> 5'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 
 gem 'acts_as_list'
 gem 'acts_as_votable'
@@ -37,7 +37,7 @@ gem 'mailgun_rails'
 
 gem 'friendly_id', '~> 5.4.0'
 gem 'impressionist'
-gem "aws-sdk-s3", require: false
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
