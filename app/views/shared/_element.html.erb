@@ -58,13 +58,13 @@
     <div class="mb-3">
         <%= form_with(model: [@post, @element], html: { class: 'float-left mr-1' }) do |form| %>
           <%= form.hidden_field :element_type, value: 'paragraph' %>
-          <%= button_tag(type: 'submit', class: 'btn btn-secondary', remote: true) do %>
+          <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
             parrafo
           <% end %>
         <% end %>
         <%= form_with(model: [@post, @element]) do |form| %>
           <%= form.hidden_field :element_type, value: 'image' %>
-          <%= button_tag(type: 'submit', class: 'btn btn-secondary', remote: true) do %>
+          <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
             imagen
           <% end %>
         <% end %>

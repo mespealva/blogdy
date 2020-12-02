@@ -1,53 +1,57 @@
 <div class="row" id="<%=@post.id%>">
-    <div class="col-md-4">
-      <%= link_to 'Back', posts_path, class: 'btn btn-dark mb-3' %>
-      <%= link_to 'borrar', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
-      <div class="card">
-        <div class="card-header">
-          <h6 class="card-title mb-0">Editando blog de <%=current_author.full_name%></h6>
-        </div>
-        <div class="card-body">
-          <%= render 'form', post: @post %>
-        </div>
-        <div class="card-footer">
-          <% if current_author.is_admin? %>
-            <% if @post.published?%>
-              <%=link_to "Volver a Borrador", unpublish_path(@post), method: :patch%>
-            <% else %>
-              <%=link_to "Publicar", publish_path(@post), method: :patch%>
-            <% end %>
-          <%elsif @post.finished?%>
-            Terminado! 
-          <%else%>
-            <%=link_to "Terminado", finish_path(@post), method: :patch%>
-          <%end%>
-        </div>
-        <div class="card-footer" 
-          <p class= "d-flex" id="likes-count" >
-            <%= render 'like', post: @post %>
-          </p>
-          <p class="d-flex" id="link">
-            <%= render 'link', post: @post %>
-          </p>
-        </div>
+  <div class="col-md-4 d-flex justify-content-between">
+    <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+    <%= link_to 'borrar', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
+  </div>
+  <div class="col-8 d-flex justify-content-end">
+    <a href="javascript: document.body.scrollIntoView(false);" class= 'btn btn-secondary text-right'>ir al final</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title mb-0">Editando blog de <%=current_author.full_name%></h6>
       </div>
-    </div>
-    <div class="col-md-8">
-      
-      <div class="card mb-5">
-        <div class="card-header text-right">
-          <% if @post.published? %>
-            <b>Publicado</b> <%= time_ago_in_words(@post.published_at) %> ago
+      <div class="card-body">
+        <%= render 'form', post: @post %>
+      </div>
+      <div class="card-footer">
+        <% if current_author.is_admin? %>
+          <% if @post.published?%>
+            <%=link_to "Volver a Borrador", unpublish_path(@post), method: :patch%>
           <% else %>
-            Borrador
+            <%=link_to "Publicar", publish_path(@post), method: :patch%>
           <% end %>
-        </div>
-        <div id="render">
-          <%= render 'shared/element'%>
-        </div>
-        
-        </div>
+        <%elsif @post.finished?%>
+          Terminado! 
+        <%else%>
+          <%=link_to "Terminado", finish_path(@post), method: :patch%>
+        <%end%>
+      </div>
+      <div class="card-footer" 
+        <p class= "d-flex" id="likes-count" >
+          <%= render 'like', post: @post %>
+        </p>
+        <p class="d-flex" id="link">
+          <%= render 'link', post: @post %>
+        </p>
       </div>
     </div>
   </div>
-  
+    
+  <div class="col-md-8">
+    <div class="card mb-5">
+      <div class="card-header text-right">
+        <% if @post.published? %>
+          <b>Publicado</b> <%= time_ago_in_words(@post.published_at) %> ago
+        <% else %>
+          Borrador
+        <% end %>
+      </div>
+      <div id="render">
+        <%= render 'shared/element'%>
+      </div>
+    </div>
+  </div> 
+</div>

@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :history, :finders]
+  friendly_id :title, use: :slugged
 
   is_impressionable
   acts_as_votable
