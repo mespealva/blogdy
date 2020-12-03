@@ -13,10 +13,6 @@ class Element < ApplicationRecord
     element_type == 'image'
   end
 
-  def tag?
-    element_type == 'tag'
-  end
-
   scope :first_element , -> do 
     Element.where(element_type: 'paragraph').first 
   end

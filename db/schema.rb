@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_200132) do
+ActiveRecord::Schema.define(version: 2020_12_02_233741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,10 @@ ActiveRecord::Schema.define(version: 2020_12_01_200132) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "full_name"
@@ -116,8 +120,16 @@ ActiveRecord::Schema.define(version: 2020_12_01_200132) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.boolean "finished", default: false
+    t.bigint "tag_id", null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
+    t.index ["tag_id"], name: "index_posts_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "votes", force: :cascade do |t|
@@ -139,4 +151,5 @@ ActiveRecord::Schema.define(version: 2020_12_01_200132) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "elements", "posts"
   add_foreign_key "posts", "authors"
+  add_foreign_key "posts", "tags"
 end

@@ -17,6 +17,11 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <%= form.label :tag %>
+    <%= form.select(:tag_id, options_from_collection_for_select(@tags, :id, :name), include_blank: true) %>
+  </div>
+
   <div class="actions">
     <%= form.submit class: 'btn btn-primary btn-block', local: true %>
   </div>

@@ -61,6 +61,10 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "blog_production"
   
   config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+    api_key: ENV['APIMAIL'],
+    domain: ENV['APIENV']
+}
   config.action_mailer.perform_caching = true
 
   # Ignore bad email addresses and do not raise email delivery errors.

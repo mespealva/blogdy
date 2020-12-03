@@ -28,12 +28,14 @@ module Authors
     # GET /posts/new
     def new
       @post = current_author.posts.build
+      @tags = Tag.all
     end
   
     # GET /posts/1/edit
     def edit
       @elements = @post.elements.order(position: :asc)
       @element = @post.elements.build
+      @tags = Tag.all
     end
   
     # POST /posts
@@ -88,6 +90,7 @@ module Authors
       else
         @post.liked_by current_author
       end
+
     end
     private
       # Use callbacks to share common setup or constraints between actions.
@@ -101,7 +104,7 @@ module Authors
   
       # Only allow a trusted parameter "white list" through.
       def post_params
-        params.require(:post).permit(:title, :header_image)
+        params.require(:post).permit(:title, :header_image, :tag_id)
       end
   end  
 end
