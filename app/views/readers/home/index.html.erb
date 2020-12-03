@@ -1,18 +1,23 @@
 <div class="row">
-  <div class="card-deck">
-    <% @posts.each do |post| %>
-    <div class="col-4 pt-4">
-      <div class="card">
-        <%= image_tag(post.header_image, size: "300x400")%>
-        <div class="card-body">
-          <h5 class="card-title"><%= post.title %></h5>
-          <p class="card-text"><%=truncate(strip_tags(post.elements.first_element.content.to_s), lenght: 250)%></p>
-          <p class="card-text"><%= link_to 'Leer Post', blog_post_path(post), class: 'btn btn-light mt-auto' %></p>
-        </div>
-      </div>
-    </div>    
-    <% end %>
+  <div class="col-2">
+    <figure>
+      <%= image_tag("d2-1-400x570.jpg", size: "200x300") %>
+    </figure>
+  </div>
+  <div class="col-8">
+    <div class="container text-center pt-5">
+      <h2>Qué hacemos</h2>
+      <p>Nuestra tarea es generar conocimiento sobre feminismo y diversidades, para ponerlo al servicio de la comunidad en un lenguaje simple y cercano.</p>
+    </div>
+  </div>
+  <div class="col-2">
+    <figure>
+      <%= image_tag("d1-1-400x545.jpg", size: "200x300") %>
+    </figure>
   </div>
 </div>
-  
-    
+<div class="container">
+  <div class="row">
+    <%= render @posts %>
+  </div>
+</div>

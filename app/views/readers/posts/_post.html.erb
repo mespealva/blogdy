@@ -1,0 +1,10 @@
+  <div class="col-4 pt-4">
+    <div class="card">
+      <%= image_tag(post.header_image, size: "300x400")%>
+      <div class="card-body">
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%=truncate(strip_tags(post.elements.first_element.content.to_s), lenght: 250)%></p>
+        <p class="card-text"><%= link_to 'Leer Post', blog_post_path(post), class: 'btn btn-light mt-auto' %></p>
+      </div>
+    </div>
+  </div>    

@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   
   get "blog/:id", to: 'readers/posts#show', as:'blog_post'
+  get 'mujeres-olvidadas', to: 'readers/home#mujeres', as: "mujeres"
+  get 'opinion', to: 'readers/home#opinion', as: "opinion"
+  get 'investigacion', to: 'readers/home#research', as:'research'
+  get 'quienes-somos', to: 'readers/home#team', as: 'team'
+  
   devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks' }
   #devise_scope :author do
   #  get 'authors/sign_in', to: 'authors/sessions#new', as: :new_author_session
   #  get 'authors/sign_out', to: 'authors/sessions#destroy', as: :destroy_author_session
   #end
-  
+
   
   scope module: 'authors' do
     get 'stats', to: "stats#index"
