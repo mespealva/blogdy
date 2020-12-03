@@ -35,6 +35,8 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'mailgun_rails'
 
+gem 'rollbar'
+
 gem 'friendly_id', '~> 5.4.0'
 gem 'impressionist'
 

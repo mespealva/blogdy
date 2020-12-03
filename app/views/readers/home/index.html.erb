@@ -3,7 +3,7 @@
     <% @posts.each do |post| %>
     <div class="col-4 pt-4">
       <div class="card">
-        <%= image_tag(post.header_image) unless post.header_image.nil?%>
+        <%= image_tag(post.header_image, size: "300x400")%>
         <div class="card-body">
           <h5 class="card-title"><%= post.title %></h5>
           <p class="card-text"><%=truncate(strip_tags(post.elements.first_element.content.to_s), lenght: 250)%></p>
