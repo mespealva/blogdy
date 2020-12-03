@@ -19,5 +19,9 @@ module Readers
     def mujeres
       @posts = Post.published.where(tag_id: 4).most_recently_published
     end
+
+    def difusion
+      @posts = Post.published.where(tag_id: 5).most_recently_published
+    end
   end
 end

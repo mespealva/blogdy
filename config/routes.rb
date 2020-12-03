@@ -5,14 +5,10 @@ Rails.application.routes.draw do
   get 'opinion', to: 'readers/home#opinion', as: "opinion"
   get 'investigacion', to: 'readers/home#research', as:'research'
   get 'quienes-somos', to: 'readers/home#team', as: 'team'
+  get 'difusion', to:'readers/home#difusion', as: 'difusion'
   
   devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks' }
-  #devise_scope :author do
-  #  get 'authors/sign_in', to: 'authors/sessions#new', as: :new_author_session
-  #  get 'authors/sign_out', to: 'authors/sessions#destroy', as: :destroy_author_session
-  #end
 
-  
   scope module: 'authors' do
     get 'stats', to: "stats#index"
     get 'posted', to: "posts#posted", as:"posted"
@@ -34,5 +30,5 @@ Rails.application.routes.draw do
   end
   
   root 'readers/home#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end
