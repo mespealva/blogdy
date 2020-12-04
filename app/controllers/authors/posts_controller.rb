@@ -1,3 +1,4 @@
+
 module Authors
   class PostsController < AuthorsController
     before_action :set_post, only: [:edit, :update, :destroy, :publish, :unpublish, :like, :finish]
@@ -10,6 +11,7 @@ module Authors
       else
         @posts = current_author.posts.order(published: :asc)
       end 
+      
     end
     
     def posted
@@ -61,13 +63,13 @@ module Authors
     # DELETE /posts/1
     def destroy
       @post.destroy
-      redirect_to posts_url, notice: 'Post was successfully destroyed.'
+      redirect_to posts_url, notice: 'Post Eliminidado'
     end
     
     def publish
       if current_author.is_admin?
         @post.update(published: true, published_at: Time.now)
-        redirect_to edit_post_path(@post)
+        redirect_to posts_path
       end
     end
 
@@ -80,8 +82,15 @@ module Authors
 
     def finish
       @post.update(finished: true)
-      redirect_to edit_post_path(@post)
-      AuthorMailer.sample_email(current_author)
+      @user = current_author
+      admin = Author.first
+        mg_client = MailgunRails::Client.new ENV['APIMAIL'],"https://api.mailgun.net/v3/mg.ifixmii.com"
+        message_params = {:from    => @user.email,
+                          :to      => admin.email,
+                          :subject => 'Sample Mail using Mailgun API',
+                          :text    => 'This mail is sent using Mailgun API via mailgun-ruby'}
+        mg_client.send_message(message_params)
+      redirect_to posts_path
     end
 
     def like

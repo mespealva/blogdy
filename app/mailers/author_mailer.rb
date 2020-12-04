@@ -9,4 +9,11 @@ class AuthorMailer < ApplicationMailer
                           :text    => 'This mail is sent using Mailgun API via mailgun-ruby'}
         mg_client.send_message ENV['APIENV'], message_params
     end
+    def send_simple_message
+        RestClient.post "https://api.mailgun.net/v3/mg.ifixmii.com/messages",
+        :from => "Excited User <mailgun@YOUR_DOMAIN_NAME>",
+        :to => "bar@example.com, YOU@YOUR_DOMAIN_NAME",
+        :subject => "Hello",
+        :text => "Testing some Mailgun awesomness!"
+    end
 end

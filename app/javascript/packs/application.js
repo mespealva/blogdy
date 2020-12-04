@@ -6,7 +6,6 @@
 require("turbolinks").start()
 require("@rails/ujs").start()
 require("@rails/activestorage").start()
-//= require highcharts
 import "channels"
 require("jquery")
 
