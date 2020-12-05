@@ -84,12 +84,21 @@ module Authors
       @post.update(finished: true)
       @user = current_author
       admin = Author.first
-        mg_client = MailgunRails::Client.new ENV['APIMAIL'],"https://api.mailgun.net/v3/mg.ifixmii.com"
-        message_params = {:from    => @user.email,
-                          :to      => admin.email,
-                          :subject => 'Hay un borrador listo para revision',
-                          :text    => 'Uno de los borradores esta listo para ser revisado y publicado'}
-        mg_client.send_message(message_params)
+      require 'sendgrid-ruby'
+
+
+      from = SendGrid::Email.new(email: 'maria@ifixmii.com')
+      to = SendGrid::Email.new(email: 'mar.alvareg@gmail.com')
+      subject = 'Sending with Twilio SendGrid is Fun'
+      content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+      mail = SendGrid::Mail.new(from, subject, to, content)
+
+      sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
+      response = sg.client.mail._('send').post(request_body: mail.to_json)
+      puts response.status_code
+      puts response.body
+      puts response.parsed_body
+      puts response.headers
       redirect_to posts_path
     end
 

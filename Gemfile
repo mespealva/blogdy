@@ -33,7 +33,8 @@ gem 'acts_as_votable'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'mailgun_rails'
+gem 'sendgrid-actionmailer'
+gem 'sendgrid-ruby'
 
 gem 'rollbar'
 

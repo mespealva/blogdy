@@ -1,4 +1,5 @@
 class Author < ApplicationRecord
+  after_create { AuthorNotifierMailer.send_signup_email.deliver}
   has_many :posts
   acts_as_voter
   # Include default devise modules. Others available are:
