@@ -87,8 +87,8 @@ module Authors
         mg_client = MailgunRails::Client.new ENV['APIMAIL'],"https://api.mailgun.net/v3/mg.ifixmii.com"
         message_params = {:from    => @user.email,
                           :to      => admin.email,
-                          :subject => 'Sample Mail using Mailgun API',
-                          :text    => 'This mail is sent using Mailgun API via mailgun-ruby'}
+                          :subject => 'Hay un borrador listo para revision',
+                          :text    => 'Uno de los borradores esta listo para ser revisado y publicado'}
         mg_client.send_message(message_params)
       redirect_to posts_path
     end
