@@ -5,13 +5,8 @@ module Authors
     
   
     # GET /posts
-    def index
-      if current_author.is_admin?
+    def index      
         @posts = Post.all.order(published: :asc)
-      else
-        @posts = current_author.posts.order(published: :asc)
-      end 
-      
     end
     
     def posted

@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este trabajo conciste en un blog con categorias que consiste de dos interfaces
+    * interfaz de autores
+    * interfaz de visitantes
 
-Things you may want to cover:
+## interfaz admin
+En la onterfaz de autores existe un admin que es el unico que puede publicar posts
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### interfaz de authores
+en esta seccion trabajaran los otros autores y colaboradores donde podran crear posts y estos seran enviados al admin una vez termiandos
+entre los autores pueden leer los otros textos y darle me gusta a los textos ajenos

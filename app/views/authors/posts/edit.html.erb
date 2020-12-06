@@ -1,7 +1,9 @@
 <div class="row" id="<%=@post.id%>">
   <div class="col-md-4 d-flex justify-content-between">
     <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+    <%if current_author.id == @post.author_id || current_author.is_admin?%>
     <%= link_to 'Borrar', post_path(@post), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }%>
+    <%end%>
   </div>
   <div class="col-8 d-flex justify-content-end">
     <a href="javascript: document.body.scrollIntoView(false);" class= 'btn btn-secondary text-right'>ir al final</a>
@@ -107,8 +109,9 @@
     </ul>
 <% end %>
       </div>
+      <%if current_author.id == @post.author_id || current_author.is_admin?%>
       <div class="container">
-    <div class="mb-3">
+        <div class="mb-3">
         <%= form_with(model: [@post, @element], html: { class: 'float-left mr-1' }) do |form| %>
           <%= form.hidden_field :element_type, value: 'paragraph' %>
           <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
@@ -121,9 +124,48 @@
             imagen
           <% end %>
         <% end %>
-    </div>
-</div>
-
+        </div>
+      </div>
+      <%end%>
+      <ul id="elements">
+        <%@elements.each do |element|%>
+          <% if element.persisted? && element.comment?%>
+          <li  data-id="<%= element.id %>" class="element-item" id="element<%=element.id%>">
+          <div class="mb-4 p-3 paragraph">
+              <div class="paragraph-content">
+                  <% if element.content.present? %>
+                      <%= element.content %>
+                  <% else %>
+                      Doble Click para Cambiar Contenido
+                  <% end %>
+              </div>
+              <div class="paragraph-form d-none" id='element-<%= element.id %>-form'>
+                  <%= form_with(model: [@post, element]) do |form| %>
+                      <%= form.rich_text_area :content %>
+                      <div class="mt-3 d-flex justify-content-between">
+                          <div>
+                              <%= form.submit "Guardar", class: 'btn btn-primary' %>
+                          </div>
+                          <%= link_to 'borrar', post_element_path(@post, element), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true %>
+                      </div>
+                  <% end %>
+              </div>
+            </div>
+          <%end%>
+          <%end%>
+      </ul>
+      <%if current_author.is_admin?%>
+      <div class="container">
+        <div class="mb-3">
+        <%= form_with(model: [@post, @element], html: { class: 'float-left mr-1' }) do |form| %>
+          <%= form.hidden_field :element_type, value: 'comment' %>
+          <%= button_tag(type: 'submit', class: 'btn btn-secondary') do %>
+            Comentario
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+      <%end%>
     </div>
   </div> 
 </div>
