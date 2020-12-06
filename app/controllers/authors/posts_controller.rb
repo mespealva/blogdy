@@ -62,7 +62,7 @@ module Authors
   
     # DELETE /posts/1
     def destroy
-      @post.elements.destory_all
+      @post.elements.destroy_all
       @post.destroy
       redirect_to posts_path
     end
