@@ -63,7 +63,7 @@ module Authors
     # DELETE /posts/1
     def destroy
       @post.destroy
-      redirect_to posts_path, notice: 'Post Eliminidado'
+      redirect_to posts_path
     end
     
     def publish
