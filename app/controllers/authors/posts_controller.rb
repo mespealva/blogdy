@@ -85,8 +85,7 @@ module Authors
       @user = current_author
       admin = Author.first
       require 'sendgrid-ruby'
-
-
+      
       from = SendGrid::Email.new(email: 'maria@ifixmii.com')
       to = SendGrid::Email.new(email: 'mar.alvareg@gmail.com')
       subject = 'Sending with Twilio SendGrid is Fun'
