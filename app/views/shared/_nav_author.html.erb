@@ -12,7 +12,7 @@
         <%= (link_to 'terminados', finished_path, class: "nav-link") if current_author.is_admin? %>
       </div>
       <span class= "nav-link" >
-        <%= link_to 'cerrar sesion', destroy_author_session_path %>
+        <%= link_to 'cerrar sesion', destroy_author_session_path, method: :delete %>
       </span>
     </div>
   </nav>

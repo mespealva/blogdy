@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get 'quienes-somos', to: 'readers/home#team', as: 'team'
   get 'difusion', to:'readers/home#difusion', as: 'difusion'
   
-  devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks' }
+  devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks',
+                                      sesions: 'authors/sesions' }
 
   scope module: 'authors' do
     get 'stats', to: "stats#index"
