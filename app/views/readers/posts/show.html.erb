@@ -17,7 +17,7 @@
             <div class="image-element mb-5">
             <%= image_tag(element.image) %>
             </div>
-          <% else %>
+          <% elsif element.paragraph? %>
             <div class="content-element mb-5">
             <%= element.content %>
             </div>
