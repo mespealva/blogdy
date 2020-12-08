@@ -1,11 +1,11 @@
 module Readers
   class HomeController < ReadersController
     def index
-      @posts = Post.published.most_recently_published
+      @posts = Post.where.not(tag_id: 3).published.most_recently_published
     end
 
     def team
-      @posts = Post.published.where(tag_id: 3).most_recently_published
+      @posts = Post.published.where(tag_id: 3)
     end
 
     def research 
