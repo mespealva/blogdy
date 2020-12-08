@@ -1,4 +1,6 @@
+
 Rails.application.routes.draw do
+  
   
   get "blog/:id", to: 'readers/posts#show', as:'blog_post'
   get 'mujeres-olvidadas', to: 'readers/home#mujeres', as: "mujeres"
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
                                       sesions: 'authors/sesions' }
 
   scope module: 'authors' do
+    delete 'destroy', to:'users#destroy'
+    get 'authors', to: 'users#index', as: 'authors'
     get 'stats', to: "stats#index"
     get 'posted', to: "posts#posted", as:"posted"
     get 'finished', to: "posts#finished", as:"finished"

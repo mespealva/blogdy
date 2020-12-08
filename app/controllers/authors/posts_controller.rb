@@ -31,7 +31,6 @@ module Authors
       end
     end
 
-
     # GET /posts/new
     def new
       @post = current_author.posts.build
@@ -95,19 +94,17 @@ module Authors
       @post.update(finished: true)
       @user = current_author
       admin = Author.first
-      require 'sendgrid-ruby'
 
-      from = SendGrid::Email.new(email: 'maria@ifixmii.com')
-      to = SendGrid::Email.new(email: 'mar.alvareg@gmail.com')
-      subject = 'Sending with Twilio SendGrid is Fun'
-      content = SendGrid::Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')
+      from = SendGrid::Email.new(email: 'admin@ifixmii.com')
+      to = SendGrid::Email.new(email: admin.email)
+      subject = 'Alquien termino su borrador'
+      content = SendGrid::Content.new(type: 'text/plain', value: 'revisa el nuevo borrador')
       mail = SendGrid::Mail.new(from, subject, to, content)
 
       sg = SendGrid::API.new(api_key: ENV['SENDGRID_API_KEY'])
       response = sg.client.mail._('send').post(request_body: mail.to_json)
       puts response.status_code
       puts response.body
-      puts response.parsed_body
       puts response.headers
       redirect_to posts_path
     end

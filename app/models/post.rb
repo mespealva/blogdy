@@ -6,7 +6,7 @@ class Post < ApplicationRecord
   acts_as_votable
   
   belongs_to :author
-  has_many :elements, -> { order(position: :asc) }
+  has_many :elements, dependent: :destroy
   belongs_to :tag
 
   has_one_attached :header_image
@@ -15,10 +15,6 @@ class Post < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :header_image
   validates_presence_of :tag
-
-  #scope :comments, -> do
-  #  where
-  #end
 
   scope :published, -> do
     where(published: true)
