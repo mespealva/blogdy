@@ -8,27 +8,31 @@
 
   <div class="form-group">
     <div class="mt-1">
-      <%= form.error_for :header_image, class: 'text-danger' %>
+      
       <% if post.header_image.present? %>
         <small>Current image:</small>
         <%= image_tag(post.header_image, width: '100%') %>
       <%else%>
         <%= form.label :header_image %>
-        <%= form.file_field :header_image %>  
+        <%= form.file_field :header_image %> 
+        <%= form.error_for :header_image, class: 'text-danger' %> 
       <% end %>
     </div>
   </div>
 
   <div class="form-group">
     <%= form.label :categoria %>      
-    <%= form.error_for :tag, class: 'text-danger' %>
+    
     <% if post.tag_id.nil? %>
       <%= form.select(:tag_id, options_from_collection_for_select(@tags, :id, :name), include_blank: true) %>
+      <%= form.error_for :tag, class: 'text-danger' %>
     <%else%>
       <p><%= post.tag.name %>
     <%end%>
   </div>
+  <%if current_author.id == post.author.id || current_author.is_admin?%>
     <div class="actions">
       <%= form.submit class: 'btn btn-primary btn-block', local: true %>
     </div>
+    <%end%>
 <% end %>

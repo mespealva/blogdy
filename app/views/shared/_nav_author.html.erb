@@ -9,7 +9,11 @@
         <%= link_to "Tus Posteados", posted_path, class: "nav-link" %>
         <%= link_to "Tus Borradores", unposted_path, class: "nav-link" %>
         <%= link_to 'Estadisticas', stats_path, class: "nav-link" %>
-        <%= (link_to 'terminados', finished_path, class: "nav-link") if current_author.is_admin? %>
+        <%if current_author.is_admin?%>
+          <%= link_to 'terminados', finished_path, class: "nav-link"  %>
+        <%else%>
+          <%= link_to 'comentarios', comments_path, class: "nav-link" %>
+        <%end%>
       </div>
       <span class= "nav-link" >
         <%= link_to 'cerrar sesion', destroy_author_session_path, method: :delete %>

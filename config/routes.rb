@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'posted', to: "posts#posted", as:"posted"
     get 'finished', to: "posts#finished", as:"finished"
     get 'unposted', to: 'posts#unposted', as: "unposted"
+    get 'comentados', to: 'posts#comments', as: 'comments'
     patch 'publish/:id', to: 'posts#publish', as: 'publish'
     patch 'unpublish/:id', to: 'posts#unpublish', as: 'unpublish'
     patch 'finish/:id', to: 'posts#finish', as: 'finish'

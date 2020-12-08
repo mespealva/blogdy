@@ -21,6 +21,16 @@ module Authors
       @posts = Post.where(finished: true)
     end
 
+    def comments
+      @posts = current_author.posts.includes(:elements).map(&:elements).flatten
+      @posts = @posts.reject{|e| e unless e.element_type == "comment" }
+      if @posts.empty?
+        @posts = "el editor no ha comentado tus posts"
+      else
+        @posts = @posts.map{|e| Post.find(e.post_id) }
+      end
+    end
+
 
     # GET /posts/new
     def new

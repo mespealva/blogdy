@@ -16,6 +16,10 @@ class Post < ApplicationRecord
   validates_presence_of :header_image
   validates_presence_of :tag
 
+  #scope :comments, -> do
+  #  where
+  #end
+
   scope :published, -> do
     where(published: true)
   end
