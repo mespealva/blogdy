@@ -33,6 +33,11 @@ module Authors
       @elements = @post.elements.order(position: :asc)
       @element = @post.elements.build
       @tags = Tag.all
+      if current_author.id == @post.author_id || current_author.is_admin?
+        render 'edit'
+      else
+        render 'edit2'
+      end
     end
   
     # POST /posts
@@ -108,11 +113,7 @@ module Authors
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_post
-        if current_author.is_admin?
           @post = Post.friendly.find(params[:id])
-        else
-          @post = current_author.posts.friendly.find(params[:id])
-        end
       end
   
       # Only allow a trusted parameter "white list" through.

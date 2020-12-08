@@ -1,0 +1,65 @@
+<div class="row" id="<%=@post.id%>">
+    <div class="col-md-4 d-flex justify-content-between">
+      <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+      <a href="javascript: document.body.scrollIntoView(false);" class= 'btn btn-secondary text-right'>ir al final</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title mb-0">Editando blog de <%=@post.author.full_name%></h6>
+        </div>
+        <div class="card-body">
+          <%= render 'form', post: @post %>
+        </div>
+        <div class="card-footer">
+            Terminado! 
+        </div>
+        <div class="card-footer" 
+          <p class= "d-flex" id="likes-count" >
+            <%= render 'like', post: @post %>
+          </p>
+          <p class="d-flex" id="link">
+            <%= render 'link', post: @post %>
+          </p>
+        </div>
+      </div>
+</div>
+      
+    <div class="col-md-8">
+      <div class="card mb-5">
+        <div class="card-header text-right">
+          <% if @post.published? %>
+            <b>Publicado</b> <%= time_ago_in_words(@post.published_at) %> ago
+          <% else %>
+            Borrador
+          <% end %>
+        </div>
+        <div id="render">
+          <div class="card-body pt-5">
+        <ul id="elements">
+            <%@elements.each do |element|%>
+              <li  data-id="<%= element.id %>" class="element-item" id="element<%=element.id%>">
+              <% if element.paragraph? %>
+              <div class="mb-4 p-3 paragraph">
+                  <div class="paragraph-content">
+                      <% if element.content.present? %>
+                          <%= element.content %>
+                      <% end %>
+                  </div>
+              </div>
+              <% elsif element.image? %>
+              <div class="mb-4 p-3 image">
+                      <%= image_tag(element.image) %>
+              </div>
+              <%end%>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+      </div>
+    </div> 
+  </div>

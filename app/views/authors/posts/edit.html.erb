@@ -13,7 +13,7 @@
   <div class="col-4">
     <div class="card">
       <div class="card-header">
-        <h6 class="card-title mb-0">Editando blog de <%=current_author.full_name%></h6>
+        <h6 class="card-title mb-0">Editando blog de <%=@post.author.full_name%></h6>
       </div>
       <div class="card-body">
         <%= render 'form', post: @post %>
