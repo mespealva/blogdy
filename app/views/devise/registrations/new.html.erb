@@ -10,7 +10,12 @@
 
   <div class="field">
     <%= f.label :full_name %><br />
-    <%= f.text_field :full_name, autocomplete: "nombre" %>
+    <%= f.text_field :full_name, autocomplete: "Nombre" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar_url %><br />
+    <%= f.file_field :avatar_url %> 
   </div>
 
   <div class="field">

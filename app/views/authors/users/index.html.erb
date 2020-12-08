@@ -6,7 +6,7 @@
     <% @authors.each do |author|%>
         <div class="col-4 pt-4">
             <div class="card" id= "user-<%=author.id%>">
-                <%= image_tag(author.avatar_url, size: "200x300")%>
+                <%= image_tag(author.avatar_url, size: "200x300") unless author.avatar_url.present?%>
                 <div class="card-body">
                     <h5 class="card-title"><%= author.full_name%> <%= "<span>(TU)</span>".html_safe if author.is_admin?%></h5>
                     <%= link_to 'Borrar', destroy_path(author.id), method: :delete, class: 'btn btn-danger', data: { confirm: "Estas segura?" }, remote: true%>

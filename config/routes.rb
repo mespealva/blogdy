@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'difusion', to:'readers/home#difusion', as: 'difusion'
   
   devise_for :authors, controllers: { omniauth_callbacks: 'authors/omniauth_callbacks',
-                                      sesions: 'authors/sesions' }
+                                      sesions: 'authors/sesions',
+                                      confirmations: 'authors/confirmations',
+                                      registrations: 'authors/registrations'}
 
   scope module: 'authors' do
     delete 'destroy', to:'users#destroy'
