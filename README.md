@@ -47,6 +47,3 @@ http://www.ifixmii.com
     * Chart.js 
 
 
-## modelos
-
-![modelos usados sin contar los de las gemas](./tabla.pdf)
